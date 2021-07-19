@@ -64,7 +64,7 @@ MainComponent::MainComponent()
 MainComponent::~MainComponent()
 {
     // This shuts down the audio device and clears the audio source.
-    deviceManager.removeChangeListener(this);github
+    deviceManager.removeChangeListener(this);
     shutdownAudio();
 }
 

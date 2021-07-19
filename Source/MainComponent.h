@@ -3,6 +3,7 @@
 
 #include <JuceHeader.h>
 #include <Corelink.h>
+#include "CorelinkInterface.h"
 
 //==============================================================================
 /*
@@ -100,7 +101,7 @@ private:
     
     juce::Slider inputGainSlider;
     juce::Label inputGainLabel;
-
+    
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };

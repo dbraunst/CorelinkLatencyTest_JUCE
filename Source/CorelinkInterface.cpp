@@ -12,9 +12,6 @@
 
 std::mutex printLock;
 
-Data::Data(){
-    
-}
 
 // Connect to Corelink with predetermined credentials + IP address,
 //   throw error if failed
@@ -32,7 +29,7 @@ bool CorelinkInterface::Connect(){
         std::cout << "Error: " << err.what() << std::endl;
         std::cout << "Try again? (y/n)" << std::endl;
         
-        tmp1 = "";
+        std::string tmp1, tmp2 = "";
         while (true)
         {
             std::cin >> tmp1;
@@ -87,6 +84,10 @@ void CorelinkInterface::corelinkRecvCallback(const int &receiverID, const int &s
     
     //TODO: this shit
     /* Needs to write to JUCE accessible memory somehow here */
+    juce::String recvString = juce::String(msg);
+    juce::MemoryBlock memBlock = juce::MemoryBlock(&recvString, size);
+    
+    this->data.memoryBlock = new juce::MemoryBlock(memBlock);
 }
 
 void CorelinkInterface::attachStream(Corelink::SendStream stream)
@@ -138,4 +139,8 @@ void CorelinkInterface::startSendRecvStreams()
     catch (...) {
         std::cout << "OTHER ERROR" << std::endl;
     }
+}
+
+
+Data::Data(){
 }

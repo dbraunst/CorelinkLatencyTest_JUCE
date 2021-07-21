@@ -27,8 +27,7 @@ public:
         // This method is where you should put your application's initialisation code..
 
         mainWindow.reset (new MainWindow (getApplicationName()));
-        
-//        corelinkInterface->openCorelink();
+     
     }
 
     void shutdown() override
@@ -102,7 +101,8 @@ public:
 
 private:
     std::unique_ptr<MainWindow> mainWindow;
-//    std::unique_ptr<CorelinkInterface> corelinkInterface;
+//    static CorelinkInterface corelinkInterface;
+    std::unique_ptr<CorelinkInterface> corelinkInterface;
 };
 
 //==============================================================================

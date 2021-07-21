@@ -260,10 +260,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB9527919491ED059F9F4514 /* Build configuration list for PBXNativeTarget "CorelinkLatencyTest - App" */;
 			buildPhases = (
-				380DA8A3A1050FC6DB073FEB /* Embed Frameworks */,
-				2AFB098C7D9DA1A0AFAEF13B /* Resources */,
-				20D66958CF62748C34F1B3D7 /* Sources */,
 				C95759D0F4BD27DDC2E4E3E8 /* Frameworks */,
+				380DA8A3A1050FC6DB073FEB /* Embed Frameworks */,
+				20D66958CF62748C34F1B3D7 /* Sources */,
+				2AFB098C7D9DA1A0AFAEF13B /* Resources */,
 			);
 			buildRules = (
 			);

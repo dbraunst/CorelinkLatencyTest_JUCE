@@ -58,6 +58,54 @@ MainComponent::MainComponent()
     
     deviceManager.addChangeListener(this);
     
+    
+    
+    //
+    // ---- Corelink Connection & Intialization ----
+    //
+    
+    Corelink::DLLInit::Init();
+    Corelink::DLLInit::setInitState(Corelink::Const::STREAM_STATE_UDP);
+    Corelink::DLLInit::setOnUpdate(CorelinkInterface::corelinkServerUpdate);
+    
+//    corelinkInterface = new CorelinkInterface();
+    
+    //Connect To the Corelink Server
+    if ( !Connect() ){ exit(-1); }
+    
+    try{
+        corelinkInterface = std::make_unique<CorelinkInterface>();
+        
+        Corelink::SendStream sender_stream = Corelink::Client::createSender("Holodeck", "audio", "",
+                                                                            true, true, Corelink::Const::STREAM_STATE_SEND_UDP);
+        corelinkInterface->attachStream(sender_stream);
+        
+        std::cout << "\n----Stream Data:\n" << Corelink::StreamData::getStreamData(STREAM_ID(sender_stream)) << std::endl;
+        
+        std::cout << "\n----Listing Active Streams:" << std::endl;
+        std::vector<int> currStreamIDs = Corelink::Client::listStreams({ "Holodeck" }, { "audio" });
+        for (int id : currStreamIDs) {
+          std::cout << id << std::endl;
+        }
+        
+        // Create our Receiver stream, and attach our callback function to it
+        Corelink::RecvStream receiver_stream = Corelink::Client::createReceiver("Holodeck", {"audio", "receiver" },
+                                                                                "", true, true,
+                                                                                Corelink::Const::STREAM_STATE_RECV_UDP);
+        
+        std::cout << "Attaching callback function to receiver stream" << std::endl;
+        receiver_stream.setOnRecieve(receiveCallback);
+        
+        std::cout << "Subscribing to receiver stream" << std::endl;
+        Corelink::Client::subscribe(STREAM_ID(receiver_stream), currStreamIDs[0]);
+        
+        std::cout << "\n----STARTING CORELINK SENDER----" << std::endl;
+    }
+    catch(Corelink::CorelinkException error) {
+        std::cout << "CORELINK ERROR" << std::endl;
+        std::cout << error.code << ":" << error.msg << std::endl;
+      }
+    
     startTimer(50);
 }
 
@@ -65,6 +113,9 @@ MainComponent::~MainComponent()
 {
     // This shuts down the audio device and clears the audio source.
     deviceManager.removeChangeListener(this);
+    
+    Corelink::Client::cleanup();
+    
     shutdownAudio();
 }
 
@@ -110,6 +161,12 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
     auto inputLevel = (float) inputGainSlider.getValue();
     auto inputLevelScale = inputLevel * 2.0f;
     
+    auto bufToCorelink = new juce::AudioBuffer<float>(maxInputChannels, bufferToFill.numSamples);
+    
+    auto corelinkRecvBuf = new juce::AudioBuffer<float>(maxOutputChannels, bufferToFill.numSamples);
+    
+    
+    
     for (auto channel = 0; channel < maxOutputChannels; ++channel)
     {
         // Check if maxNumInputChan is zero, if so zero output buffer.
@@ -131,16 +188,34 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
                 //get ptr to start sample in buffer for this channel at (channelNo, sampleIndex
                 auto* iBuf = bufferToFill.buffer->getReadPointer(actualInputChannel, bufferToFill.startSample);
                 auto* oBuf = bufferToFill.buffer->getWritePointer(channel, bufferToFill.startSample);
+                auto* oBufCL = bufToCorelink->getWritePointer(channel, bufferToFill.startSample);
                 
                 for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
                 {
-                    oBuf[sample] = (iBuf[sample] * inputLevelScale - inputLevel)
-                        + (random.nextFloat() * noiseLevelScale - noiseLevel);
+//                    oBuf[sample] = (iBuf[sample] * inputLevelScale - inputLevel)
+//                        + (random.nextFloat() * noiseLevelScale - noiseLevel);
+//                    oBuf[sample] = corelinkInterface->data.memoryBlock->
+                    oBufCL[sample] = iBuf[sample];
                 }
             }
         }
     }
     
+    // ----Corelink Messaging----
+    
+    // Reinterpret buffer into a string, call send to send it over corelink
+    
+    const char* char_oBuf = reinterpret_cast<const char*>(&bufToCorelink);
+    size_t size = bufToCorelink->getNumSamples() * bufToCorelink->getNumChannels() * sizeof (float);
+    
+    // write the
+    juce::String string_oBuf(char_oBuf, size);
+    corelinkInterface->data.sender_stream.send(string_oBuf.toStdString());
+    
+    
+    // Set the number of channels and samples within our data struct to reference by the receive callback
+    corelinkInterface->data.numSamples = bufToCorelink->getNumSamples();
+    corelinkInterface->data.numChannels = bufToCorelink->getNumChannels();
 }
 
 void MainComponent::releaseResources()
@@ -149,6 +224,9 @@ void MainComponent::releaseResources()
     // restarted due to a setting change.
 
     // For more details, see the help for AudioProcessor::releaseResources()
+    
+    
+    Corelink::Client::cleanup();
     
     juce::Logger::getCurrentLogger()->writeToLog("Releasing Audio Resources");
 }
@@ -187,4 +265,30 @@ void MainComponent::resized()
     cpuUsageText.setBounds(topLine);
     
     diagnosticsBox.setBounds(rect);
+}
+
+bool Connect(){
+    
+    Corelink::DLLInit::setServerCredentials("Testuser", "Testpassword");
+    try {
+        //For Local server:
+        Corelink::Client::connect("127.0.0.1", 20012);
+        //For NYU Server:
+        // Corelink::Client::connect("Corelink.hpc.nyu.edu", 20012);
+        return true;
+    }
+    catch (const Corelink::CorelinkException& err) {
+        std::cout << "Error: " << err.what() << std::endl;
+        std::cout << "Try again? (y/n)" << std::endl;
+        
+        std::string tmp1, tmp2 = "";
+        while (true)
+        {
+            std::cin >> tmp1;
+            if (tmp1 == "y" || tmp1 == "Y") { break; }
+            else if (tmp1 == "n" || tmp1 == "N") { return false; }
+        }
+    }
+    
+    return true;
 }

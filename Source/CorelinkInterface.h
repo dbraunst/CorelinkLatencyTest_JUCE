@@ -11,6 +11,7 @@
 #pragma once
 
 #include "Corelink.h"
+#include <JuceHeader.h>
 
 #include <thread>
 #include <chrono>
@@ -18,29 +19,36 @@
 
 struct Data {
     Data();
-    Corelink::SendStream sender_stream = Corelink::Client::createSender("Audiotest", "audiotest",
+    Corelink::SendStream sender_stream = Corelink::Client::createSender("AudioTest", "audiotest",
                                                                         "",
                                                                         true,
                                                                         true,
                                                                         Corelink::Const::STREAM_STATE_SEND_UDP);
+    
+    int numChannels = 0;
+    int numSamples = 0;
+    
+    juce::MemoryBlock* memoryBlock;
 };
 
 class CorelinkInterface{
 public:
     
-    bool Connect();
-    bool InitLoop();
+    static bool Connect();
+    static bool InitLoop();
     
     void openCorelink();
     void closeCorelink();
     
     static void corelinkServerUpdate(const int& receiverID, const int& senderID);
-    static void corelinkRecvCallback(const int& receiverID, const int& senderID, const char* msg, const int& size);
+    void corelinkRecvCallback(const int& receiverID, const int& senderID, const char* msg, const int& size);
     
     void attachStream(Corelink::SendStream);
     void startSendRecvStreams();
     
     Data data = Data();
+
+    juce::MemoryBlock corelinkRecvBlock;
 private:
 //    std::mutex printLock;
     std::string tmp1, tmp2;

@@ -93,6 +93,9 @@ MainComponent::MainComponent()
                                                                                 "", true, true,
                                                                                 Corelink::Const::STREAM_STATE_RECV_UDP);
         
+        
+        
+        
         std::cout << "Attaching callback function to receiver stream" << std::endl;
         receiver_stream.setOnRecieve(receiveCallback);
         

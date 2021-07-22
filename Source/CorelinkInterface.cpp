@@ -121,7 +121,7 @@ void CorelinkInterface::startSendRecvStreams()
                                                                                 Corelink::Const::STREAM_STATE_RECV_UDP);
         
         std::cout << "Attaching callback function to receiver stream" << std::endl;
-        receiver_stream.setOnRecieve(corelinkRecvCallback);
+//        receiver_stream.setOnRecieve(corelinkRecvCallback);
         
         std::cout << "Subscribing to receiver stream" << std::endl;
         Corelink::Client::subscribe(STREAM_ID(receiver_stream), currStreamIDs[0]);

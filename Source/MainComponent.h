@@ -89,13 +89,13 @@ private:
         cpuUsageText.setText (juce::String (cpu, 6) + " %", juce::dontSendNotification);
     }
     
-    static void receiveCallback(const int &receiverID, const int &senderID, const char *msg, const int &size)
-    {
-        //TODO: this shit
-        /* Needs to write to JUCE accessible memory somehow here */
-        corelinkInterface->corelinkRecvCallback(receiverID, senderID, msg, size);
-        
-    }
+//    static void receiveCallback(const int &receiverID, const int &senderID, const char *msg, const int &size)
+//    {
+//        //TODO: this shit
+//        /* Needs to write to JUCE accessible memory somehow here */
+//        corelinkInterface->corelinkRecvCallback(receiverID, senderID, msg, size);
+//        
+//    }
     
     juce::Random random;
     

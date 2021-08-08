@@ -84,15 +84,16 @@ void CorelinkInterface::corelinkRecvCallback(const int &receiverID, const int &s
     
     //TODO: this shit
     /* Needs to write to JUCE accessible memory somehow here */
-    juce::String recvString = juce::String(msg);
-    juce::MemoryBlock memBlock = juce::MemoryBlock(&recvString, size);
+    juce::String* p_recvString = new juce::String(msg);
+//    juce::String recvString = juce::String(&msg);
+    juce::MemoryBlock memBlock = juce::MemoryBlock(p_recvString, size);
     
     this->data.memoryBlock = new juce::MemoryBlock(memBlock);
 }
 
 void CorelinkInterface::attachStream(Corelink::SendStream stream)
 {
-    data.sender_stream = stream;
+    data.sender_stream = &stream;
 }
 
 void CorelinkInterface::startSendRecvStreams()

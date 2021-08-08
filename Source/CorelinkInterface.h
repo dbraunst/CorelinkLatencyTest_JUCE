@@ -19,11 +19,12 @@
 
 struct Data {
     Data();
-    Corelink::SendStream sender_stream = Corelink::Client::createSender("AudioTest", "audiotest",
-                                                                        "",
-                                                                        true,
-                                                                        true,
-                                                                        Corelink::Const::STREAM_STATE_SEND_UDP);
+//    Corelink::SendStream sender_stream = Corelink::Client::createSender("AudioTest", "audiotest",
+//                                                                        "",
+//                                                                        true,
+//                                                                        true,
+//                                                                        Corelink::Const::STREAM_STATE_SEND_UDP);
+    Corelink::SendStream* sender_stream = nullptr;
     
     int numChannels = 0;
     int numSamples = 0;

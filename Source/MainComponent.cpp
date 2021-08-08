@@ -74,11 +74,11 @@ MainComponent::MainComponent()
     if ( !Connect() ){ exit(-1); }
     
     try{
-        corelinkInterface = std::make_unique<CorelinkInterface>();
+//        corelinkInterface = std::make_unique<CorelinkInterface>();
         
         Corelink::SendStream sender_stream = Corelink::Client::createSender("Holodeck", "audio", "",
                                                                             true, true, Corelink::Const::STREAM_STATE_SEND_UDP);
-        corelinkInterface->attachStream(sender_stream);
+        corelinkInterface.attachStream(sender_stream);
         
         std::cout << "\n----Stream Data:\n" << Corelink::StreamData::getStreamData(STREAM_ID(sender_stream)) << std::endl;
         
@@ -93,11 +93,15 @@ MainComponent::MainComponent()
                                                                                 "", true, true,
                                                                                 Corelink::Const::STREAM_STATE_RECV_UDP);
         
-        
-        
+//        auto lambda  = [](void* extra, const int& receiver, const int& sender, const char* msg, const int& msgLen) {
+//            if (extra != nullptr) {
+//                auto ptr = static_cast<CorelinkInterface*>(extra);
+//                ptr->corelinkRecvCallback(receiver, sender, msg, msgLen);
+//            }
+//        };
         
         std::cout << "Attaching callback function to receiver stream" << std::endl;
-        receiver_stream.setOnRecieve(receiveCallback);
+        receiver_stream.setOnRecieve( receiveCallback );
         
         std::cout << "Subscribing to receiver stream" << std::endl;
         Corelink::Client::subscribe(STREAM_ID(receiver_stream), currStreamIDs[0]);
@@ -213,12 +217,15 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
     
     // write the
     juce::String string_oBuf(char_oBuf, size);
-    corelinkInterface->data.sender_stream.send(string_oBuf.toStdString());
+//    juce::CharPointer_UTF8 utf8_oBuf = string_oBuf.toUTF8();
+    const std::string* stdString_oBuf = reinterpret_cast<std::string*>(&string_oBuf);
+    
+    corelinkInterface.data.sender_stream->send(*stdString_oBuf);
     
     
     // Set the number of channels and samples within our data struct to reference by the receive callback
-    corelinkInterface->data.numSamples = bufToCorelink->getNumSamples();
-    corelinkInterface->data.numChannels = bufToCorelink->getNumChannels();
+    corelinkInterface.data.numSamples = bufToCorelink->getNumSamples();
+    corelinkInterface.data.numChannels = bufToCorelink->getNumChannels();
 }
 
 void MainComponent::releaseResources()

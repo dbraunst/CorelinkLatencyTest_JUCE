@@ -15,7 +15,7 @@ namespace BinaryData
     const int            cacrt_pemSize = 5326;
 
     extern const char*   libCorelink_dylib;
-    const int            libCorelink_dylibSize = 10012840;
+    const int            libCorelink_dylibSize = 10012816;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
     const int namedResourceListSize = 3;

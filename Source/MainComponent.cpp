@@ -101,8 +101,8 @@ MainComponent::MainComponent()
 //        };
         
         std::cout << "Attaching callback function to receiver stream" << std::endl;
-        receiver_stream.setOnRecieve( receiveCallback );
-        
+        receiver_stream.setOnReceive( receiveCallback );
+         
         std::cout << "Subscribing to receiver stream" << std::endl;
         Corelink::Client::subscribe(STREAM_ID(receiver_stream), currStreamIDs[0]);
         
@@ -213,12 +213,13 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
     // Reinterpret buffer into a string, call send to send it over corelink
     
     const char* char_oBuf = reinterpret_cast<const char*>(&bufToCorelink);
-    size_t size = bufToCorelink->getNumSamples() * bufToCorelink->getNumChannels() * sizeof (float);
+    const std::string* stdString_oBuf = reinterpret_cast<std::string*>(&bufToCorelink);
     
-    // write the
-    juce::String string_oBuf(char_oBuf, size);
+//    size_t size = bufToCorelink->getNumSamples() * bufToCorelink->getNumChannels() * sizeof (float);
+    
+//    std::string string_oBuf(char_oBuf, size);
 //    juce::CharPointer_UTF8 utf8_oBuf = string_oBuf.toUTF8();
-    const std::string* stdString_oBuf = reinterpret_cast<std::string*>(&string_oBuf);
+//    const std::string* stdString_oBuf = reinterpret_cast<std::string*>(&string_oBuf);
     
     corelinkInterface.data.sender_stream->send(*stdString_oBuf);
     

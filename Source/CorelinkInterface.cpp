@@ -20,9 +20,9 @@ bool CorelinkInterface::Connect(){
     Corelink::DLLInit::setServerCredentials("Testuser", "Testpassword");
     try {
         //For Local server:
-        Corelink::Client::connect("127.0.0.1", 20012);
+//        Corelink::Client::connect("127.0.0.1", 20012);
         //For NYU Server:
-        // Corelink::Client::connect("Corelink.hpc.nyu.edu", 20012);
+         Corelink::Client::connect("Corelink.hpc.nyu.edu", 20012);
         return true;
     }
     catch (const Corelink::CorelinkException& err) {

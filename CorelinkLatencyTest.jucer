@@ -23,15 +23,15 @@
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX" microphonePermissionNeeded="1" extraLinkerFlags="-L/usr/local/opt/openssl/lib&#10;-L/usr/local/Cellar/openssl@1.1/1.1.1k/&#10;-L/Users/danielbraunstein/Include/corelinkdll/build/"
-               frameworkSearchPaths="/usr/local/Cellar/openssl@1.1/1.1.1k/lib/&#10;/Users/danielbraunstein/Include/corelinkdll/build/"
-               embeddedFrameworks="/Users/danielbraunstein/Include/corelinkdll/build/libCorelink.dylib&#10;/usr/local/Cellar/openssl@1.1/1.1.1k/lib/libssl.dylib&#10;/usr/local/Cellar/openssl@1.1/1.1.1k/lib/libcrypto.dylib">
+    <XCODE_MAC targetFolder="Builds/MacOSX" microphonePermissionNeeded="1" extraLinkerFlags="-L/usr/local/opt/openssl/lib&#10;-L/usr/local/Cellar/openssl@1.1/1.1.1l/&#10;-L/Users/danielbraunstein/Include/corelinkdll/build/"
+               frameworkSearchPaths="/usr/local/Cellar/openssl@1.1/1.1.1l/lib/&#10;/Users/danielbraunstein/Include/corelinkdll/build/"
+               embeddedFrameworks="/Users/danielbraunstein/Include/corelinkdll/build/libCorelink.dylib&#10;/usr/local/Cellar/openssl@1.1/1.1.1l/lib/libssl.dylib&#10;/usr/local/Cellar/openssl@1.1/1.1.1l/lib/libcrypto.dylib">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" targetName="CorelinkLatencyTest" customXcodeFlags="LD_RUNPATH_SEARCH_PATHS = /Users/danielbraunstein/Include/corelinkdll/build"
-                       headerPath="/usr/local/Cellar/openssl@1.1/1.1.1k&#10;/Users/danielbraunstein/Documents/corelink/clients/dll/include&#10;/Users/danielbraunstein/Documents/corelink/clients/cpp/"
+                       headerPath="/usr/local/Cellar/openssl@1.1/1.1.1l&#10;/Users/danielbraunstein/Documents/corelink/clients/dll/include&#10;/Users/danielbraunstein/Documents/corelink/clients/cpp/"
                        libraryPath="/Users/danielbraunstein/Include/corelinkdll/build/"/>
         <CONFIGURATION isDebug="0" name="Release" targetName="CorelinkLatencyTest" customXcodeFlags="LD_RUNPATH_SEARCH_PATHS = /Users/danielbraunstein/Include/corelinkdll/build"
-                       headerPath="&#10;/usr/local/Cellar/openssl@1.1/1.1.1k&#10;/Users/danielbraunstein/Documents/corelink/clients/dll/include&#10;/Users/danielbraunstein/Documents/corelink/clients/cpp/"
+                       headerPath="&#10;/usr/local/Cellar/openssl@1.1/1.1.1l&#10;/Users/danielbraunstein/Documents/corelink/clients/dll/include&#10;/Users/danielbraunstein/Documents/corelink/clients/cpp/"
                        libraryPath="/Users/danielbraunstein/Include/corelinkdll/build/"/>
       </CONFIGURATIONS>
       <MODULEPATHS>

@@ -15,13 +15,12 @@
 		25CB06EE0F39F22FEB85FF02 /* App */ = {isa = PBXBuildFile; fileRef = D9BCDC0EF55188AD5FFCB5E6; };
 		25ED9B0A898914116DD98F92 /* include_juce_gui_extra.mm */ = {isa = PBXBuildFile; fileRef = 2CA942CE259BB605E27457A1; };
 		29D8EA16261F3F8D432E032D /* include_juce_audio_utils.mm */ = {isa = PBXBuildFile; fileRef = CDC5298C26C12751BFA99964; };
-		2ADB7F5BE5C6A51B55220C38 /* libcrypto.dylib */ = {isa = PBXBuildFile; fileRef = 31467EEC10FF3DAF50BA4C1B; settings = { ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3814AE2D1985585B7C5E74F6 /* include_juce_gui_basics.mm */ = {isa = PBXBuildFile; fileRef = 10F47F7DD9087F5B09134A91; };
 		400CEDA4B8522CE43CF54342 /* include_juce_audio_basics.mm */ = {isa = PBXBuildFile; fileRef = D3F3F6D6E1A1A3217BC966E4; };
-		45D6D8B75C004808E64836D9 /* libssl.dylib */ = {isa = PBXBuildFile; fileRef = 413B6AF83D19FE9714C7883B; settings = { ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4CB4B5234BA51C38D0DCA600 /* CoreAudioKit.framework */ = {isa = PBXBuildFile; fileRef = 7EEF044B6E65A85271FBB709; };
 		4D0EECB556BDB0448F5D0A05 /* DiscRecording.framework */ = {isa = PBXBuildFile; fileRef = 9E02319884D1DB81E70B5FFB; };
 		56280BA7A48E6C31E00D645D /* include_juce_audio_devices.mm */ = {isa = PBXBuildFile; fileRef = 1009382FAA4EA7AD2EF47396; };
+		6E8E257103C91AB0B7D31F25 /* libssl.dylib */ = {isa = PBXBuildFile; fileRef = 05C51B4FE944CA99D7994949; settings = { ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		71543B956FB4894C2DF3AFA2 /* WebKit.framework */ = {isa = PBXBuildFile; fileRef = 1069AC9F11DFA1F3383A3A01; };
 		762C9DA91018E900432AA00E /* AudioToolbox.framework */ = {isa = PBXBuildFile; fileRef = 0267C128040CDCA83F944200; };
 		8035AA2EC23EB53AC7AC9370 /* include_juce_audio_processors.mm */ = {isa = PBXBuildFile; fileRef = 02BB282AC5C9D6FE395E20C1; };
@@ -38,6 +37,7 @@
 		CC98F7E0EACD93472E4741B5 /* libCorelink.dylib */ = {isa = PBXBuildFile; fileRef = D2800F4B1A7B34497E544C83; settings = { ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DD65CF7A2B4500F35996D62D /* RecentFilesMenuTemplate.nib */ = {isa = PBXBuildFile; fileRef = 75F58E5F63BE3B7E10E9E46D; };
 		EEE03E08A96B1616689F6E16 /* Cocoa.framework */ = {isa = PBXBuildFile; fileRef = 7B1BCD448209D97D2F0D684F; };
+		FA50BBA0A93000A64FB7E9EA /* libcrypto.dylib */ = {isa = PBXBuildFile; fileRef = 0E05DC732ECF156578CA1904; settings = { ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FE9EAA79895210FA340D413A /* include_juce_graphics.mm */ = {isa = PBXBuildFile; fileRef = CECB36041D18B84965606EEE; };
 /* End PBXBuildFile section */
 
@@ -47,8 +47,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC98F7E0EACD93472E4741B5,
-				45D6D8B75C004808E64836D9,
-				2ADB7F5BE5C6A51B55220C38,
+				6E8E257103C91AB0B7D31F25,
+				FA50BBA0A93000A64FB7E9EA,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,7 +60,9 @@
 /* Begin PBXFileReference section */
 		0267C128040CDCA83F944200 /* AudioToolbox.framework */ /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		02BB282AC5C9D6FE395E20C1 /* include_juce_audio_processors.mm */ /* include_juce_audio_processors.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_processors.mm; path = ../../JuceLibraryCode/include_juce_audio_processors.mm; sourceTree = SOURCE_ROOT; };
+		05C51B4FE944CA99D7994949 /* libssl.dylib */ /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = "/usr/local/Cellar/openssl@1.1/1.1.1l/lib/libssl.dylib"; sourceTree = "<group>"; };
 		08B0731DA2D39ADC4F043AB5 /* IOKit.framework */ /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		0E05DC732ECF156578CA1904 /* libcrypto.dylib */ /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = "/usr/local/Cellar/openssl@1.1/1.1.1l/lib/libcrypto.dylib"; sourceTree = "<group>"; };
 		0F8A6CDAEAEFDE405B98C13C /* Main.cpp */ /* Main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = ../../Source/Main.cpp; sourceTree = SOURCE_ROOT; };
 		1009382FAA4EA7AD2EF47396 /* include_juce_audio_devices.mm */ /* include_juce_audio_devices.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_devices.mm; path = ../../JuceLibraryCode/include_juce_audio_devices.mm; sourceTree = SOURCE_ROOT; };
 		1069AC9F11DFA1F3383A3A01 /* WebKit.framework */ /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -73,11 +75,9 @@
 		2CA942CE259BB605E27457A1 /* include_juce_gui_extra.mm */ /* include_juce_gui_extra.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_gui_extra.mm; path = ../../JuceLibraryCode/include_juce_gui_extra.mm; sourceTree = SOURCE_ROOT; };
 		2D06E60100BE27966E4CB555 /* Accelerate.framework */ /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		303628B994D3F5DF3E2B015A /* include_juce_audio_formats.mm */ /* include_juce_audio_formats.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_formats.mm; path = ../../JuceLibraryCode/include_juce_audio_formats.mm; sourceTree = SOURCE_ROOT; };
-		31467EEC10FF3DAF50BA4C1B /* libcrypto.dylib */ /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = "/usr/local/Cellar/openssl@1.1/1.1.1k/lib/libcrypto.dylib"; sourceTree = "<group>"; };
 		336E0FA37349E41AB0FA74B7 /* CorelinkInterface.h */ /* CorelinkInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CorelinkInterface.h; path = ../../Source/CorelinkInterface.h; sourceTree = SOURCE_ROOT; };
 		38A2F42432A895D9C90AAD09 /* Carbon.framework */ /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		3DB743B86AA0C16BCB321487 /* include_juce_core.mm */ /* include_juce_core.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_core.mm; path = ../../JuceLibraryCode/include_juce_core.mm; sourceTree = SOURCE_ROOT; };
-		413B6AF83D19FE9714C7883B /* libssl.dylib */ /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = "/usr/local/Cellar/openssl@1.1/1.1.1k/lib/libssl.dylib"; sourceTree = "<group>"; };
 		4D7FB3C0F1B4A4A0D0350F09 /* CorelinkInterface.cpp */ /* CorelinkInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CorelinkInterface.cpp; path = ../../Source/CorelinkInterface.cpp; sourceTree = SOURCE_ROOT; };
 		5151B75540F0D6012FDF31CE /* juce_audio_processors */ /* juce_audio_processors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_processors; path = /Users/danielbraunstein/JUCE/modules/juce_audio_processors; sourceTree = "<absolute>"; };
 		5B4FABAE2221C7252BE9E1D6 /* CoreAudio.framework */ /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -129,8 +129,8 @@
 				9637DF9CBA6579F66D4A3B3E,
 				71543B956FB4894C2DF3AFA2,
 				CC98F7E0EACD93472E4741B5,
-				45D6D8B75C004808E64836D9,
-				2ADB7F5BE5C6A51B55220C38,
+				6E8E257103C91AB0B7D31F25,
+				FA50BBA0A93000A64FB7E9EA,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,8 +153,8 @@
 				BBB40513F114CF5894D9CE3B,
 				1069AC9F11DFA1F3383A3A01,
 				D2800F4B1A7B34497E544C83,
-				413B6AF83D19FE9714C7883B,
-				31467EEC10FF3DAF50BA4C1B,
+				05C51B4FE944CA99D7994949,
+				0E05DC732ECF156578CA1904,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -278,7 +278,7 @@
 		0D51513261EFB0118B7B5731 = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = "Brauntosaur";
 				TargetAttributes = {
 					48375717489D7E916F7AC2A8 = {
@@ -368,7 +368,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				DEAD_CODE_STRIPPING = YES;
-				FRAMEWORK_SEARCH_PATHS = ("/usr/local/Cellar/openssl@1.1/1.1.1k/lib/", "/Users/danielbraunstein/Include/corelinkdll/build/", "$(inherited)");
+				FRAMEWORK_SEARCH_PATHS = ("/usr/local/Cellar/openssl@1.1/1.1.1l/lib/", "/Users/danielbraunstein/Include/corelinkdll/build/", "$(inherited)");
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -376,7 +376,7 @@
 					"NDEBUG=1",
 					"JUCE_DISPLAY_SPLASH_SCREEN=1",
 					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x60008",
+					"JUCE_PROJUCER_VERSION=0x60100",
 					"JUCE_MODULE_AVAILABLE_juce_audio_basics=1",
 					"JUCE_MODULE_AVAILABLE_juce_audio_devices=1",
 					"JUCE_MODULE_AVAILABLE_juce_audio_formats=1",
@@ -407,7 +407,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../../JuceLibraryCode",
 					"/Users/danielbraunstein/JUCE/modules",
-					"/usr/local/Cellar/openssl@1.1/1.1.1k",
+					"/usr/local/Cellar/openssl@1.1/1.1.1l",
 					"/Users/danielbraunstein/Documents/corelink/clients/dll/include",
 					"/Users/danielbraunstein/Documents/corelink/clients/cpp/",
 					"/Users/danielbraunstein/Documents/corelink/clients/dll/include",
@@ -426,8 +426,8 @@
 				);
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode /Users/danielbraunstein/JUCE/modules /usr/local/Cellar/openssl@1.1/1.1.1k /Users/danielbraunstein/Documents/corelink/clients/dll/include /Users/danielbraunstein/Documents/corelink/clients/cpp/ /Users/danielbraunstein/Documents/corelink/clients/dll/include /Users/danielbraunstein/Documents/corelink/clients/cpp/ /usr/local/Cellar/openssl@1.1/1.1.1k /usr/local/opt/openssl/include";
-				OTHER_LDFLAGS = "-L/usr/local/opt/openssl/lib -L/usr/local/Cellar/openssl@1.1/1.1.1k/ -L/Users/danielbraunstein/Include/corelinkdll/build/";
+				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode /Users/danielbraunstein/JUCE/modules /usr/local/Cellar/openssl@1.1/1.1.1l /Users/danielbraunstein/Documents/corelink/clients/dll/include /Users/danielbraunstein/Documents/corelink/clients/cpp/ /Users/danielbraunstein/Documents/corelink/clients/dll/include /Users/danielbraunstein/Documents/corelink/clients/cpp/ /usr/local/Cellar/openssl@1.1/1.1.1k /usr/local/opt/openssl/include";
+				OTHER_LDFLAGS = "-L/usr/local/opt/openssl/lib -L/usr/local/Cellar/openssl@1.1/1.1.1l/ -L/Users/danielbraunstein/Include/corelinkdll/build/";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Brauntosaur.CorelinkLatencyTest;
 				PRODUCT_NAME = "CorelinkLatencyTest";
 				USE_HEADERMAP = NO;
@@ -494,7 +494,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = ("/usr/local/Cellar/openssl@1.1/1.1.1k/lib/", "/Users/danielbraunstein/Include/corelinkdll/build/", "$(inherited)");
+				FRAMEWORK_SEARCH_PATHS = ("/usr/local/Cellar/openssl@1.1/1.1.1l/lib/", "/Users/danielbraunstein/Include/corelinkdll/build/", "$(inherited)");
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -502,7 +502,7 @@
 					"DEBUG=1",
 					"JUCE_DISPLAY_SPLASH_SCREEN=1",
 					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x60008",
+					"JUCE_PROJUCER_VERSION=0x60100",
 					"JUCE_MODULE_AVAILABLE_juce_audio_basics=1",
 					"JUCE_MODULE_AVAILABLE_juce_audio_devices=1",
 					"JUCE_MODULE_AVAILABLE_juce_audio_formats=1",
@@ -533,7 +533,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../../JuceLibraryCode",
 					"/Users/danielbraunstein/JUCE/modules",
-					"/usr/local/Cellar/openssl@1.1/1.1.1k",
+					"/usr/local/Cellar/openssl@1.1/1.1.1l",
 					"/Users/danielbraunstein/Documents/corelink/clients/dll/include",
 					"/Users/danielbraunstein/Documents/corelink/clients/cpp/",
 					"/Users/danielbraunstein/Documents/corelink/clients/dll/include",
@@ -551,8 +551,8 @@
 					"\"/Users/danielbraunstein/Include/corelinkdll/build/\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode /Users/danielbraunstein/JUCE/modules /usr/local/Cellar/openssl@1.1/1.1.1k /Users/danielbraunstein/Documents/corelink/clients/dll/include /Users/danielbraunstein/Documents/corelink/clients/cpp/ /Users/danielbraunstein/Documents/corelink/clients/dll/include /Users/danielbraunstein/Documents/corelink/clients/cpp/ /usr/local/Cellar/openssl@1.1/1.1.1k /usr/local/opt/openssl/include";
-				OTHER_LDFLAGS = "-L/usr/local/opt/openssl/lib -L/usr/local/Cellar/openssl@1.1/1.1.1k/ -L/Users/danielbraunstein/Include/corelinkdll/build/";
+				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode /Users/danielbraunstein/JUCE/modules /usr/local/Cellar/openssl@1.1/1.1.1l /Users/danielbraunstein/Documents/corelink/clients/dll/include /Users/danielbraunstein/Documents/corelink/clients/cpp/ /Users/danielbraunstein/Documents/corelink/clients/dll/include /Users/danielbraunstein/Documents/corelink/clients/cpp/ /usr/local/Cellar/openssl@1.1/1.1.1k /usr/local/opt/openssl/include";
+				OTHER_LDFLAGS = "-L/usr/local/opt/openssl/lib -L/usr/local/Cellar/openssl@1.1/1.1.1l/ -L/Users/danielbraunstein/Include/corelinkdll/build/";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Brauntosaur.CorelinkLatencyTest;
 				PRODUCT_NAME = "CorelinkLatencyTest";
 				USE_HEADERMAP = NO;
